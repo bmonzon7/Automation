@@ -35,7 +35,8 @@ public class Support_Welcome_Page {
 	
 	/* GoToMeeting by CSS*/
 	@FindBy(how = How.CSS,using = ".productmeeting.product-selectorlogos")
-	@CacheLookup	
+	@CacheLookup
+	public	
 		WebElement myGoToMeetingLogo;
 	
 	@FindBy(how=How.CSS, using = ".topNav>header")

@@ -1,0 +1,204 @@
+package com.help.citrix;
+
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+
+public class UnityNav {
+	WebDriver driver;
+	WebDriverWait wait;
+	static int WAIT_TIME = 15;
+	
+	public UnityNav(WebDriver driver){
+		this.driver = driver;
+	
+		//page factory
+		PageFactory.initElements( new AjaxElementLocatorFactory(driver, WAIT_TIME), this);
+		
+	}
+
+	
+	//define the product search component
+	
+	//define the article categories
+	
+	//define the community component
+	
+	//define the Live Training component
+	
+	//define the Contact Us component
+	
+	//Unity Nav -- Support For Other Products link
+	@FindBy(how = How.CSS, using = "div [class='secondaryLinkSet link-group'] >ul>li:nth-of-type(1)>a")// "div [class='secondaryLinkSet link-group'] >ul>li[class='more expand']>a")
+			WebElement suppOthProdsDropDd;
+
+	//GoToWebinar
+	@FindBy(how=How.CSS, using = "li>a.g2w")
+		WebElement g2wUNav;
+		
+	//GoToWebinar
+	@FindBy(how=How.CSS, using = "li>a.g2t")
+		WebElement g2tUNav;
+	
+	//GoToMeeting
+	@FindBy(how=How.CSS, using = "li>a.g2m" )
+		WebElement g2mUNav;
+		
+	//OpenOvice
+	@FindBy(how=How.CSS, using = "li>a.ov")
+		WebElement openVoiceUNav;
+	
+	//GoToAssist Remote Support
+	@FindBy(how=How.CSS, using = "li:nth-of-type(2) >a.g2a")
+		WebElement g2aRemote;
+	
+	//GoToAssist Service Desk
+	@FindBy(how=How.CSS, using = "li:nth-of-type(5) >a.g2a")
+		WebElement g2aService;
+	
+	//GoToAssist Corporate
+	@FindBy(how=How.CSS, using = "li:nth-of-type(7) >a.g2a")
+		WebElement g2aCorp;
+		
+	//Podio
+	@FindBy(how=How.CSS, using = "")
+		WebElement podio;
+	
+	//ShareFile
+	@FindBy(how=How.CSS, using = "")
+		WebElement shareFile;
+		
+	//ShareConnect
+	@FindBy(how=How.CSS, using = "")
+		WebElement shareConnect;
+	
+	//GoToMyPC
+	@FindBy(how=How.CSS, using = "")	
+		WebElement g2MyPC;
+	
+	//Concierge
+	@FindBy(how=How.CSS, using = "")
+		WebElement concierge;
+	
+	//WorkSpace Cloud
+	@FindBy(how=How.CSS, using = "")
+		WebElement wsCloud;
+	//Other Products
+	@FindBy(how=How.CSS, using ="")
+		WebElement otherProds;
+	
+	//method to click on the Unity Nav -- Support For Other Products Menu
+	public void clickSuppOthProds() throws InterruptedException{
+		System.out.println("Inside the clickSuppOthProds()");
+		//System.out.println("WebElement Text Attrib value: " + suppOthProdsDropDd.getText());
+		
+		suppOthProdsDropDd.click();
+		
+		int waitfor = 2000;
+		Thread.sleep(waitfor);
+		//driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
+		
+		// driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+	}
+	
+	public String getUrlg2w(){
+		String url;
+		url = g2wUNav.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2m(){
+		String url;
+		url = g2mUNav.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2t(){
+		String url;
+		url = g2tUNav.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlOpenV(){
+		String url;
+		url = openVoiceUNav.getAttribute("href");
+		return url;
+	}
+		
+	public String getUrlg2aRemote(){
+		String url;
+		url = g2aRemote.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2aService(){
+		String url;
+		url = g2aService.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2Corp(){
+		String url;
+		url = g2aCorp.getAttribute("href");
+		return url;
+	}
+			
+	public void clickProducts(WebElement webObject){
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click();", webObject);
+	}
+		
+	public void launchG2W(){
+		System.out.println("Inside the launchGT2W()");
+	/*
+		Actions builder = new Actions(driver);
+		builder.moveToElement(gtwUNav).click(gtwUNav);
+		builder.perform();
+	*/
+		clickProducts(g2wUNav);
+		
+	}
+		
+	public void launchG2T(){
+		System.out.println("Inside the launchG2T()");
+		clickProducts(g2tUNav);
+	}
+	
+	public void launchG2M(){
+		System.out.println("Inside the launchG2M()");
+		clickProducts(g2mUNav);			
+	}
+		
+	public void launchOpenV(){
+		System.out.println("Inside the launchOpenV()");
+		clickProducts(openVoiceUNav);
+	}
+	
+	public void launchG2ARemote(){
+		System.out.println("Inside the launchG2ARemote()");
+		clickProducts(g2aRemote);
+	}
+	
+	public void launchG2AService(){
+		System.out.println("Inside launchG2AService()");
+		clickProducts(g2aService);
+		}
+	
+	public void launchG2ACorp(){
+		System.out.println("Inside launchG2ACorp()");
+		clickProducts(g2aCorp);
+		}
+}	
+
+

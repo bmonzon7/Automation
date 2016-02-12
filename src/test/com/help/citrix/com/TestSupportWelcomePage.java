@@ -1,6 +1,9 @@
-package com.help.citrix;
+package test.com.help.citrix.com;
 
+import com.help.citrix.*;
 import org.testng.annotations.Test;
+
+import com.help.citrix.Support_Welcome_Page;
 
 import page.factory.helper.BrowserFactory;
 

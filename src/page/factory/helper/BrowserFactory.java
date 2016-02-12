@@ -19,7 +19,7 @@ public class BrowserFactory {
 			driver = new ChromeDriver();
 		}
 		
-		driver.manage().window().maximize();		
+		//driver.manage().window().maximize();		
 		driver.get(url);
 		return driver;
 		
