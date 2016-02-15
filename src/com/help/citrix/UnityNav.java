@@ -1,5 +1,6 @@
 package com.help.citrix;
 
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -45,22 +46,27 @@ public class UnityNav {
 
 	//GoToWebinar
 	@FindBy(how=How.CSS, using = "li>a.g2w")
-		public WebElement g2w;
+	////CacheLookup
+	public WebElement g2w;
 		
 	//GoToWebinar
 	@FindBy(how=How.CSS, using = "li>a.g2t")
+	//CacheLookup
 		public WebElement g2t;
 	
 	//GoToMeeting
 	@FindBy(how=How.CSS, using = "li>a.g2m" )
+	//CacheLookup
 		public WebElement g2m;
 		
 	//OpenOvice
 	@FindBy(how=How.CSS, using = "li>a.ov")
+	//CacheLookup
 		public WebElement g2openVoice;
 	
 	//GoToAssist Remote Support
 	@FindBy(how=How.CSS, using = "li:nth-of-type(2) >a.g2a")
+	//CacheLookup
 		public WebElement g2aRemote;
 	
 	//GoToAssist Service Desk
@@ -73,31 +79,46 @@ public class UnityNav {
 		
 	//Podio
 	@FindBy(how=How.CSS, using = "li>a.podio")
+	//CacheLookup
 		public WebElement g2Podio;
 	
 	//ShareFile
 	@FindBy(how=How.CSS, using = "li>a.sf")
+	//CacheLookup
 		public WebElement g2ShareFile;
 		
 	//ShareConnect
 	@FindBy(how=How.CSS, using = "li>a.sc")
+	//CacheLookup
 		public WebElement g2ShareConnect;
 	
 	//GoToMyPC
-	@FindBy(how=How.CSS, using = "li>a.g2p")	
+	@FindBy(how=How.CSS, using = "li>a.g2p")
+	//CacheLookup
 		public WebElement g2MyPC;
 	
 	//Concierge
 	@FindBy(how=How.CSS, using = "li>a.con")
+	//CacheLookup
 		public WebElement g2Concierge;
 	
 	//WorkSpace Cloud
 	@FindBy(how=How.CSS, using = "li>a.wc")
+	//CacheLookup
 		public WebElement g2WsCloud;
 	
 	//Other Products
 	@FindBy(how=How.CSS, using ="li>a.others")
+	//CacheLookup
 		public WebElement g2OtherProds;
+	
+	
+	//Grasshopper
+	@FindBy(how=How.CSS, using = "li>a.grasshopper")
+	//CacheLookup
+		public WebElement g2Grasshopper;
+	
+	
 	
 	//method to click on the Unity Nav -- Support For Other Products Menu
 	public void clickSuppOthProds() throws InterruptedException{
@@ -197,6 +218,12 @@ public class UnityNav {
 		return url;
 	}
 	
+	public String getUrlg2Grasshopper(){
+		String url;
+		System.out.println("Inside the getUrlg2Grasshopper()");
+		url = g2Grasshopper.getAttribute("href");
+		return url;
+	}
 	
 	public void clickProducts(WebElement webObject){
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -275,12 +302,15 @@ public class UnityNav {
 		clickProducts(g2WsCloud);
 		}
 	
-	
 	public void launchG2Others(){
 		System.out.println("Inside launchG2Others()");
 		clickProducts(g2OtherProds);
 		}
 	
+	public void launchG2Grasshopper(){
+		System.out.println("Inside the launchG2Grasshopper()");
+		clickProducts(g2Grasshopper);
+	}
 }	
 
 

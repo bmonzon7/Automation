@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import com.help.citrix.UnityNav;
 
 import page.factory.helper.BrowserFactory;
+import com.help.*;
 
 public class Test_UnityNavMenu{
 	WebDriver driver;
@@ -38,8 +39,7 @@ public class Test_UnityNavMenu{
 			
 			baseProduct = "/meeting";
 			driver.get(baseUrl+baseProduct);
-			
-			
+		
 			//open the menu
 			unityNavMenu.clickSuppOthProds();
 		
@@ -125,14 +125,13 @@ public class Test_UnityNavMenu{
 	}
 
 	
-	
 	@Test
 	public void verifyUnityNavGTW(){
 		baseProduct = "/webinar";
 		
 		try{
-			//unityNavMenu.clickSuppOthProds();
-			wait.until(ExpectedConditions.visibilityOf(unityNavMenu.g2w));
+			unityNavMenu.clickSuppOthProds();
+			//wait.until(ExpectedConditions.visibilityOf(unityNavMenu.g2w));
 			unityNavMenu.launchG2W();
 			System.out.println("G2W Url expected is: " + baseUrl + baseProduct);
 			System.out.println("G2W Url actual is  : " + driver.getCurrentUrl());
@@ -167,7 +166,8 @@ public class Test_UnityNavMenu{
 			//unityNavMenu.clickSuppOthProds();
 		}
 	}
-
+	
+	@Test
 	public void verifyUnityNavOpenVoice(){
 		baseProduct = "/openvoice";
 		
@@ -349,18 +349,16 @@ public class Test_UnityNavMenu{
 			}
 			catch(Exception ex){
 				System.out.println("Something went wrong in the verifySupportOtherProdsNav()" + ex.toString());
-
-				
 			}
 			finally{
 				
 			}
-}
+	}
 			
 			
 	@Test
 	public void verifyUnityNavG2WorkspaceCloud(){
-		baseProduct = "/redirect/workspace-cloud";
+		//baseProduct = "/redirect/workspace-cloud";
 		try{
 			unityNavMenu.clickSuppOthProds();
 			//wait.until(ExpectedConditions.visibilityOf(unityNavMenu.g2WsCloud));
@@ -378,11 +376,11 @@ public class Test_UnityNavMenu{
 			finally{
 				
 			}
-}
+	}	
 		
 	@Test
 	public void verifyUnityNavG2OtherProducts(){
-		baseProduct = "/products";
+		//baseProduct = "/products.html";
 		try{
 			unityNavMenu.clickSuppOthProds();
 			//wait.until(ExpectedConditions.visibilityOf(unityNavMenu.g2OtherProds));
@@ -401,9 +399,31 @@ public class Test_UnityNavMenu{
 			finally{
 				
 			}
-}
-			
+	}
 	
+	@Test
+	public void verifyUnityNavG2Grasshoppper(){
+		//baseProduct = "/grasshopper";
+		try{
+			unityNavMenu.clickSuppOthProds();
+			//wait.until(ExpectedConditions.visibilityOf(unityNavMenu.g2OtherProds));
+			unityNavMenu.launchG2Grasshopper();
+			System.out.println("G2 Grasshopper Url expected is: " +  "https://support.grasshopper.com/home");
+			System.out.println("G2 Grasshipper actual Url is : " + driver.getCurrentUrl());
+			Assert.assertEquals(driver.getCurrentUrl(), ("https://support.grasshopper.com/home"));
+			System.out.println("Confirmed: I am in the Grasshopper page");
+			driver.navigate().back();
+			}
+			catch(Exception ex){
+				System.out.println("Something went wrong in the verifyUnityNavG2Grasshoppper()" + ex.toString());
+				
+				
+			}
+			finally{
+				
+			}
+	}
+			
 }
 	
 	
