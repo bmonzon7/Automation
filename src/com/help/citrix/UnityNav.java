@@ -45,58 +45,59 @@ public class UnityNav {
 
 	//GoToWebinar
 	@FindBy(how=How.CSS, using = "li>a.g2w")
-		WebElement g2wUNav;
+		public WebElement g2w;
 		
 	//GoToWebinar
 	@FindBy(how=How.CSS, using = "li>a.g2t")
-		WebElement g2tUNav;
+		public WebElement g2t;
 	
 	//GoToMeeting
 	@FindBy(how=How.CSS, using = "li>a.g2m" )
-		WebElement g2mUNav;
+		public WebElement g2m;
 		
 	//OpenOvice
 	@FindBy(how=How.CSS, using = "li>a.ov")
-		WebElement openVoiceUNav;
+		public WebElement g2openVoice;
 	
 	//GoToAssist Remote Support
 	@FindBy(how=How.CSS, using = "li:nth-of-type(2) >a.g2a")
-		WebElement g2aRemote;
+		public WebElement g2aRemote;
 	
 	//GoToAssist Service Desk
 	@FindBy(how=How.CSS, using = "li:nth-of-type(5) >a.g2a")
-		WebElement g2aService;
+		public WebElement g2aService;
 	
 	//GoToAssist Corporate
 	@FindBy(how=How.CSS, using = "li:nth-of-type(7) >a.g2a")
-		WebElement g2aCorp;
+		public WebElement g2aCorp;
 		
 	//Podio
-	@FindBy(how=How.CSS, using = "")
-		WebElement podio;
+	@FindBy(how=How.CSS, using = "li>a.podio")
+		public WebElement g2Podio;
 	
 	//ShareFile
-	@FindBy(how=How.CSS, using = "")
-		WebElement shareFile;
+	@FindBy(how=How.CSS, using = "li>a.sf")
+		public WebElement g2ShareFile;
 		
 	//ShareConnect
-	@FindBy(how=How.CSS, using = "")
-		WebElement shareConnect;
+	@FindBy(how=How.CSS, using = "li>a.sc")
+		public WebElement g2ShareConnect;
 	
 	//GoToMyPC
-	@FindBy(how=How.CSS, using = "")	
-		WebElement g2MyPC;
+	@FindBy(how=How.CSS, using = "li>a.g2p")	
+		public WebElement g2MyPC;
 	
 	//Concierge
-	@FindBy(how=How.CSS, using = "")
-		WebElement concierge;
+	@FindBy(how=How.CSS, using = "li>a.con")
+		public WebElement g2Concierge;
 	
 	//WorkSpace Cloud
-	@FindBy(how=How.CSS, using = "")
-		WebElement wsCloud;
+	@FindBy(how=How.CSS, using = "li>a.wc")
+		public WebElement g2WsCloud;
+	
 	//Other Products
-	@FindBy(how=How.CSS, using ="")
-		WebElement otherProds;
+	@FindBy(how=How.CSS, using ="li>a.others")
+		public WebElement g2OtherProds;
 	
 	//method to click on the Unity Nav -- Support For Other Products Menu
 	public void clickSuppOthProds() throws InterruptedException{
@@ -114,25 +115,25 @@ public class UnityNav {
 	
 	public String getUrlg2w(){
 		String url;
-		url = g2wUNav.getAttribute("href");
+		url = g2w.getAttribute("href");
 		return url;
 	}
 	
 	public String getUrlg2m(){
 		String url;
-		url = g2mUNav.getAttribute("href");
+		url = g2m.getAttribute("href");
 		return url;
 	}
 	
 	public String getUrlg2t(){
 		String url;
-		url = g2tUNav.getAttribute("href");
+		url = g2t.getAttribute("href");
 		return url;
 	}
 	
 	public String getUrlOpenV(){
 		String url;
-		url = openVoiceUNav.getAttribute("href");
+		url = g2openVoice.getAttribute("href");
 		return url;
 	}
 		
@@ -153,7 +154,50 @@ public class UnityNav {
 		url = g2aCorp.getAttribute("href");
 		return url;
 	}
-			
+	
+	public String getUrlg2Podio(){
+		String url;
+		url = g2Podio.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2ShareFile(){
+		String url;
+		url = g2ShareFile.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2ShareConnect(){
+		String url;
+		url = g2ShareConnect.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2Concierge(){
+		String url;
+		url = g2Concierge.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2MyPC(){
+		String url;
+		url = g2MyPC.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2WsCloud(){
+		String url;
+		url = g2WsCloud.getAttribute("href");
+		return url;
+	}
+	
+	public String getUrlg2Others(){
+		String url;
+		url = g2OtherProds.getAttribute("href");
+		return url;
+	}
+	
+	
 	public void clickProducts(WebElement webObject){
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", webObject);
@@ -166,23 +210,23 @@ public class UnityNav {
 		builder.moveToElement(gtwUNav).click(gtwUNav);
 		builder.perform();
 	*/
-		clickProducts(g2wUNav);
+		clickProducts(g2w);
 		
 	}
 		
 	public void launchG2T(){
 		System.out.println("Inside the launchG2T()");
-		clickProducts(g2tUNav);
+		clickProducts(g2t);
 	}
 	
 	public void launchG2M(){
 		System.out.println("Inside the launchG2M()");
-		clickProducts(g2mUNav);			
+		clickProducts(g2m);			
 	}
 		
 	public void launchOpenV(){
 		System.out.println("Inside the launchOpenV()");
-		clickProducts(openVoiceUNav);
+		clickProducts(g2openVoice);
 	}
 	
 	public void launchG2ARemote(){
@@ -199,6 +243,44 @@ public class UnityNav {
 		System.out.println("Inside launchG2ACorp()");
 		clickProducts(g2aCorp);
 		}
+	
+	//START
+	public void launchG2Podio(){
+		System.out.println("Inside launchG2Podio()");
+		clickProducts(g2Podio);
+		}
+	
+	public void launchG2ShareFile(){
+		System.out.println("Inside launchG2ShareFile()");
+		clickProducts(g2ShareFile);
+		}
+	
+	public void launchG2ShareConnect(){
+		System.out.println("Inside launchG2ShareConnect()");
+		clickProducts(g2ShareConnect);
+		}
+	
+	public void launchG2MyPC(){
+		System.out.println("Inside launchG2MyPC()");
+		clickProducts(g2MyPC);
+		}
+	
+	public void launchG2Concierge(){
+		System.out.println("Inside launchG2Concierge()");
+		clickProducts(g2Concierge);
+		}
+	
+	public void launchG2WorkspaceCloud(){
+		System.out.println("Inside launchG2WorkspaceCloud()");
+		clickProducts(g2WsCloud);
+		}
+	
+	
+	public void launchG2Others(){
+		System.out.println("Inside launchG2Others()");
+		clickProducts(g2OtherProds);
+		}
+	
 }	
 
 

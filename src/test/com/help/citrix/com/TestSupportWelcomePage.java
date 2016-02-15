@@ -43,6 +43,7 @@ public class TestSupportWelcomePage {
 		try{
 			System.out.println("Inside the Test = 1");
 			welcomePg = new Support_Welcome_Page(driver);
+			
 			wait.until(ExpectedConditions.visibilityOf(welcomePg.myGoToMeetingLogo));
 		 	Assert.assertEquals(driver.getCurrentUrl(), "http://helped1.citrix.com/support");
 		 	System.out.println("Confirmed: I am in the Support Welcome Landing Page");
