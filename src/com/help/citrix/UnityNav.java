@@ -29,6 +29,10 @@ public class UnityNav {
 		
 	}
 
+	//Define TopNav "More from Citrix"
+	@FindBy(how=How.CSS, using = "div>.menu.show-for-medium-up")
+		public WebElement navMoreCitrix;
+	
 	
 	//define the product search component
 	
@@ -271,6 +275,8 @@ public class UnityNav {
 		clickProducts(g2aCorp);
 		}
 	
+	
+	
 	//START
 	public void launchG2Podio(){
 		System.out.println("Inside launchG2Podio()");
@@ -310,6 +316,11 @@ public class UnityNav {
 	public void launchG2Grasshopper(){
 		System.out.println("Inside the launchG2Grasshopper()");
 		clickProducts(g2Grasshopper);
+	}
+	
+	public void expandMoreCitrixNav(){
+		System.out.println("Inside the expandMoreCitrixNav()");
+		clickProducts(navMoreCitrix);
 	}
 }	
 

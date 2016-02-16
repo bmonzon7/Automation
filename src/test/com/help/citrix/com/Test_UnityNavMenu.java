@@ -92,6 +92,10 @@ public class Test_UnityNavMenu{
 				
 				//close menu
 				unityNavMenu.clickSuppOthProds();
+				//expand MoreCitrix
+				unityNavMenu.expandMoreCitrixNav();
+				
+				
 		}
 		catch(Exception ex){
 			System.out.println("Something went wrong in the verifySupportOtherProdsNav()" + ex.toString());
@@ -102,7 +106,7 @@ public class Test_UnityNavMenu{
 			
 		}
 	}		
-	
+
 	@Test 
 	public void verifyUnityNavGTM(){
 		baseProduct = "/meeting";
@@ -423,7 +427,7 @@ public class Test_UnityNavMenu{
 				
 			}
 	}
-			
+		
 }
 	
 	
