@@ -4,29 +4,34 @@ package test.com.help.citrix.com;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.help.citrix.UnityNav;
 
 import page.factory.helper.BrowserFactory;
 
-public class Test_UnityNavMenu{
+public class Test_UnityNav_Menu{
 	WebDriver driver;
-	String baseEnv = "stage";
+	String baseEnv = "";
 	String baseProduct = "";
-	String baseUrl = "http://help" + baseEnv +".citrix.com";
-	
-	String browserName = "firefox";
-	WebDriverWait wait;
+	String baseUrl = "http://help" + baseEnv +".citrix.com";	
 	UnityNav unityNavMenu;
 	
 	
 	
 	@BeforeTest
-	public void setupSupportWelcomePage(){
-		driver = BrowserFactory.startBrowser(browserName, baseUrl);
-		wait = new WebDriverWait(driver, 30);
+	@Parameters("browser")	
+	public void setupSupportWelcomePage(String browser){
+		System.out.println("@BeforeTest");
+		//driver = BrowserFactory.startBrowser(browserName, baseUrl);
+		driver = BrowserFactory.startBrowser(browser, "about:blank");		
+		if(!browser.equalsIgnoreCase("Safari")){			
+			driver.manage().deleteAllCookies();
+		}	
+		driver.get(baseUrl);	
 		unityNavMenu = new UnityNav(driver);
 		
 	}
@@ -424,6 +429,20 @@ public class Test_UnityNavMenu{
 			finally{
 				
 			}
+	}
+	
+	@AfterTest
+	public void closeBrowser(){
+		try{
+			driver.quit();
+		}
+		catch(Exception e){
+			System.out.println("Exception in trying to close Browser: " + e.toString());
+			throw(e);
+		}
+		finally{
+			
+		}
 	}
 		
 }

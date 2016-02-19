@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,18 +25,21 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestSupportWelcomePage {	
+public class Test_SupportWelcome_Page {	
 	WebDriver driver;	
 	Support_Welcome_Page welcomePg;
-	String baseEnv = "stage";
+	String baseEnv = "";
 	String baseProduct = "/support";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
-	String browserName = "firefox";
+	
 	
 	@BeforeTest
-	public void setupSupportWelcomePage(){
-		driver = BrowserFactory.startBrowser(browserName, baseUrl);
-		
+	@Parameters("browser")
+	public void setupSupportWelcomePage(String browser){
+		driver = BrowserFactory.startBrowser(browser, (baseUrl+baseProduct));
+		if(!browser.equalsIgnoreCase("Safari")){			
+			driver.manage().deleteAllCookies();
+		}
 	}
 	
 	@Test (priority = 1)
@@ -81,7 +85,7 @@ public class TestSupportWelcomePage {
 		String txtPageWelcome = welcomePg.getSectionTitle();
 		
 		try{			
-			Assert.assertEquals(txtPageWelcome, "Welcome To Citrix1 Support");
+			Assert.assertEquals(txtPageWelcome, "Welcome To Citrix Support");
 			System.out.println("Confirmed: Main Support Page Text");
 			
 		}
@@ -321,7 +325,7 @@ public class TestSupportWelcomePage {
 
 	}
 	
-	/*
+	
 	@AfterTest
 	public void closeBrowser(){
 		try{
@@ -334,7 +338,7 @@ public class TestSupportWelcomePage {
 		finally{
 			
 		}
-	 */
+	}
 	
 	
 }

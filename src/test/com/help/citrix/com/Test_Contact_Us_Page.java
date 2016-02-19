@@ -4,7 +4,9 @@ package test.com.help.citrix.com;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.help.citrix.Contact_Us_Page;
 import com.help.citrix.GoToMeeting_Page;
@@ -13,40 +15,37 @@ import page.factory.helper.BrowserFactory;
 
 public class Test_Contact_Us_Page {
 	WebDriver driver;
-	Contact_Us_Page Contact_Us_pg;
-	String browserName = "firefox";
-	String baseEnv = "stage";
+	Contact_Us_Page Contact_Us_pg;	
+	String baseEnv = "";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	String baseProduct ="/contact-us";
 	String supportUrl = "/support";
 	
 	
-	@BeforeTest
-	public void setupContact_Us_Page(){
-		System.out.println("BEFORE TEST METHOD");
-		driver = BrowserFactory.startBrowser(browserName, "about:blank");		
+	@BeforeTest 
+		@Parameters("browser")	
+	public void setupContact_Us_Page(String browser){
+		System.out.println("@BeforeTest");		
+		driver = BrowserFactory.startBrowser(browser, "about:blank");
+		System.out.println("Browser Name = " + browser);
 		
-		driver.manage().deleteAllCookies();
-		driver.get(baseUrl+baseProduct);
-		
-		
+		if(!browser.equalsIgnoreCase("Safari")){			
+			driver.manage().deleteAllCookies();
+		}
+		driver.get(baseUrl+baseProduct);				
 	}
-	
-	
-	
+		
 	@Test (priority = 0)
 	public void verifyPageHeader(){
 		try{
 			Contact_Us_pg = new Contact_Us_Page(driver);		
 			System.out.println("This Page Heading Text is : "+ Contact_Us_pg.getProdHeadingText());
-			
 		}
 		catch(Exception ex){
 			System.out.println("Something went wrong in the verifyPageHeader()");
 		}
 		finally{}
 	}
-	
 	
 	@Test (priority = 1)
 	public void verifyG2M(){
@@ -60,9 +59,6 @@ public class Test_Contact_Us_Page {
 			for (WebElement wE : g2Mpg.allCategories ){
 				System.out.println("The text of Element: " + wE.getText());
 			}
-			
-			
-			
 		}
 		catch(Exception ex){
 			System.out.println("Something went wrong in the verifyG2M()");
@@ -101,8 +97,7 @@ public class Test_Contact_Us_Page {
 			driver.navigate().to(baseUrl+baseProduct);
 		}
 	}
-	
-	
+		
 	@Test (priority = 4)
 	public void verifyG2Assist(){
 		try{
@@ -159,7 +154,6 @@ public class Test_Contact_Us_Page {
 		}
 	}
 	
-	
 	@Test (priority = 8)
 	public void verifyg2ShareFile(){
 		try{
@@ -188,6 +182,19 @@ public class Test_Contact_Us_Page {
 		}
 	}
 	
+	@AfterTest
+	public void closeBrowser(){
+		try{
+			driver.quit();
+		}
+		catch(Exception e){
+			System.out.println("Exception in trying to close Browser: " + e.toString());
+			throw(e);
+		}
+		finally{
+			
+		}
+	}
 	
 	
 
