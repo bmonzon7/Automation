@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.help.citrix.Contact_Us_Page;
@@ -16,14 +17,22 @@ import page.factory.helper.BrowserFactory;
 public class Test_Contact_Us_Page {
 	WebDriver driver;
 	Contact_Us_Page Contact_Us_pg;	
-	String baseEnv = "";
+	String baseEnv = "ed1";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
-	String baseProduct ="/contact-us";
+	//String baseProduct ="/contact-us";
 	String supportUrl = "/support";
 	
+	@DataProvider
+	public Object[][] getData() {
+       return new Object[][]{{1, "/contactus"}, {2, "/contact-us"}, 
+    	   {3, "/contactus-free"},{4, "/contactus-paid"}};
+       }
+
+
 	
-	@BeforeTest 
-		@Parameters("browser")	
+	@BeforeTest
+		@Parameters("browser")
+	
 	public void setupContact_Us_Page(String browser){
 		System.out.println("@BeforeTest");		
 		driver = BrowserFactory.startBrowser(browser, "about:blank");
@@ -32,12 +41,13 @@ public class Test_Contact_Us_Page {
 		if(!browser.equalsIgnoreCase("Safari")){			
 			driver.manage().deleteAllCookies();
 		}
-		driver.get(baseUrl+baseProduct);				
+						
 	}
 		
-	@Test (priority = 0)
-	public void verifyPageHeader(){
+	@Test (priority = 0, dataProvider="getData")
+	public void verifyPageHeader( int nontUsed, String baseProduct){
 		try{
+			driver.get(baseUrl+baseProduct);
 			Contact_Us_pg = new Contact_Us_Page(driver);		
 			System.out.println("This Page Heading Text is : "+ Contact_Us_pg.getProdHeadingText());
 		}
@@ -47,19 +57,15 @@ public class Test_Contact_Us_Page {
 		finally{}
 	}
 	
-	@Test (priority = 1)
-	public void verifyG2M(){
+	@Test (priority = 1, dataProvider="getData")
+	public void verifyG2M(int nontUsed, String baseProduct){
 		//baseProduct = "/meeting";
 		try{
 			Contact_Us_pg.g2Meeting.click();
 			GoToMeeting_Page g2Mpg = new GoToMeeting_Page(driver);
 			System.out.println("The G2M Logo Url is : " + g2Mpg.g2MeetingPageLogo.getAttribute("href"));
 			Assert.assertEquals((baseUrl+supportUrl), g2Mpg.g2MeetingPageLogo.getAttribute("href"));
-			
-			for (WebElement wE : g2Mpg.allCategories ){
-				System.out.println("The text of Element: " + wE.getText());
 			}
-		}
 		catch(Exception ex){
 			System.out.println("Something went wrong in the verifyG2M()");
 		}
@@ -70,8 +76,8 @@ public class Test_Contact_Us_Page {
 		}
 	}
 	
-	@Test (priority = 2)
-	public void verifyG2T(){
+	@Test (priority = 2, dataProvider="getData")
+	public void verifyG2T(int nontUsed, String baseProduct){
 		try{
 			Contact_Us_pg.g2Training.click();
 		}
@@ -84,8 +90,8 @@ public class Test_Contact_Us_Page {
 		}
 	}
 	
-	@Test (priority = 3)
-	public void verifyG2W(){
+	@Test (priority = 3, dataProvider="getData")
+	public void verifyG2W(int nontUsed, String baseProduct){
 		try{
 			Contact_Us_pg.g2Web.click();
 		}
@@ -98,8 +104,8 @@ public class Test_Contact_Us_Page {
 		}
 	}
 		
-	@Test (priority = 4)
-	public void verifyG2Assist(){
+	@Test (priority = 4, dataProvider="getData")
+	public void verifyG2Assist(int nontUsed, String baseProduct){
 		try{
 			Contact_Us_pg.g2Assist.click();
 		}
@@ -112,8 +118,8 @@ public class Test_Contact_Us_Page {
 		}
 	}
 	
-	@Test (priority = 5)
-	public void verifyG2Co(){
+	@Test (priority = 5, dataProvider="getData")
+	public void verifyG2Co(int nontUsed, String baseProduct){
 		try{
 			Contact_Us_pg.g2Concierge.click();
 		}
@@ -126,8 +132,8 @@ public class Test_Contact_Us_Page {
 		}
 	}
 	
-	@Test (priority = 6)
-	public void verifyG2MyPC(){
+	@Test (priority = 6, dataProvider="getData")
+	public void verifyG2MyPC(int nontUsed, String baseProduct){
 		try{
 			Contact_Us_pg.g2MyPC.click();
 		}
@@ -140,8 +146,8 @@ public class Test_Contact_Us_Page {
 		}
 	}
 	
-	@Test (priority = 7)
-	public void verifyg2OpenVoice(){
+	@Test (priority = 7, dataProvider="getData")
+	public void verifyg2OpenVoice(int nontUsed, String baseProduct){
 		try{
 			Contact_Us_pg.g2OpenVoice.click();
 		}
@@ -154,8 +160,8 @@ public class Test_Contact_Us_Page {
 		}
 	}
 	
-	@Test (priority = 8)
-	public void verifyg2ShareFile(){
+	@Test (priority = 8, dataProvider="getData")
+	public void verifyg2ShareFile(int nontUsed, String baseProduct){
 		try{
 			Contact_Us_pg.g2ShareFile.click();
 		}
@@ -168,8 +174,8 @@ public class Test_Contact_Us_Page {
 		}
 	}
 	
-	@Test (priority = 9)
-	public void verifyg2ShareConnect(){
+	@Test (priority = 9, dataProvider="getData")
+	public void verifyg2ShareConnect(int nontUsed, String baseProduct){
 		try{
 			Contact_Us_pg.g2ShareConnect.click();
 		}

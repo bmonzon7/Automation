@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class Test_SupportWelcome_Page {	
 	WebDriver driver;	
 	Support_Welcome_Page welcomePg;
-	String baseEnv = "";
+	String baseEnv = "ed1";
 	String baseProduct = "/support";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	
@@ -101,7 +101,9 @@ public class Test_SupportWelcome_Page {
 	public void verifyg2Grasshopper(){
 		String grasshopperUrl = "https://support.grasshopper.com/home";
 		try{	
+			//close the survey popup
 			driver.findElement(By.cssSelector("#sgE-2338346-1-33-image")).click();
+			
 			welcomePg.moreProductsDropDown.click();				
 			welcomePg.g2Grasshopper.click();
 			Assert.assertEquals(driver.getCurrentUrl(), grasshopperUrl);
