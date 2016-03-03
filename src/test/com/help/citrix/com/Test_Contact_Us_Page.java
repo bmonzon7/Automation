@@ -17,7 +17,7 @@ import page.factory.helper.BrowserFactory;
 public class Test_Contact_Us_Page {
 	WebDriver driver;
 	Contact_Us_Page Contact_Us_pg;	
-	String baseEnv = "ed1";
+	String baseEnv = "";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	//String baseProduct ="/contact-us";
 	String supportUrl = "/support";
@@ -27,8 +27,6 @@ public class Test_Contact_Us_Page {
        return new Object[][]{{1, "/contactus"}, {2, "/contact-us"}, 
     	   {3, "/contactus-free"},{4, "/contactus-paid"}};
        }
-
-
 	
 	@BeforeTest
 		@Parameters("browser")

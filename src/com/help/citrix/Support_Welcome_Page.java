@@ -63,7 +63,7 @@ public class Support_Welcome_Page {
 		public WebElement g2ShareConn;
 	
 	/* GoToAssist -->Corporate */
-	@FindBy(how=How.CSS, using = ".productgotoassist.showdropdown.product-selectorlogos")
+	@FindBy(how=How.CSS, using = "li#sub-productlist.g2a-prdlist.prd-list")
 		public WebElement g2AssistDropDown;
 	
 	/* GoToAssist -->Corporate */

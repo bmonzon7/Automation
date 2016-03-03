@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class Test_SupportWelcome_Page {	
 	WebDriver driver;	
 	Support_Welcome_Page welcomePg;
-	String baseEnv = "ed1";
+	String baseEnv = "";
 	String baseProduct = "/support";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	
@@ -55,7 +55,7 @@ public class Test_SupportWelcome_Page {
 		}
 				
 		finally{
-			driver.navigate().back();
+		//	driver.navigate().back();
 			}
 	}
 		
@@ -67,7 +67,7 @@ public class Test_SupportWelcome_Page {
 			
 			welcomePg.g2Meeting.click();			
 			driver.findElement(By.cssSelector("#sublogo")).click();			
-			verifySupportWelcomeLandingPage();
+			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
 			System.out.println("Confirmed: I went to g2M and now I am in the Support Welcome Landing Page");
 			
 		}
@@ -76,7 +76,7 @@ public class Test_SupportWelcome_Page {
 			throw(ex);
 		}	
 		finally{
-			driver.navigate().back();
+			//driver.navigate().back();
 			}
 	}
 		
@@ -85,18 +85,18 @@ public class Test_SupportWelcome_Page {
 		String txtPageWelcome = welcomePg.getSectionTitle();
 		
 		try{			
-			Assert.assertEquals(txtPageWelcome, "Welcome To Citrix Support");
+			Assert.assertEquals(txtPageWelcome, "Welcome to Citrix Support");
 			System.out.println("Confirmed: Main Support Page Text");
-			
+			//driver.navigate().back();
 		}
 		catch(AssertionError ex ){
 			System.out.println("Something went wrong in the verifyMainPageTitleText()" + ex.toString());
 		}
 		finally{
-			driver.navigate().back();
+			
 			}
 	}
-	
+
 	@Test (priority = 4) 
 	public void verifyg2Grasshopper(){
 		String grasshopperUrl = "https://support.grasshopper.com/home";
@@ -184,7 +184,7 @@ public class Test_SupportWelcome_Page {
 		}
 	}	
 	
-	@Test (priority = 8)
+	@Test (priority = 9)
 	public void verifyg2Podio(){
 		String podioUrl = "https://help.podio.com/hc/en-us";
 		
@@ -201,7 +201,7 @@ public class Test_SupportWelcome_Page {
 		}
 	}	
 	
-	@Test (priority = 9)
+	@Test (priority = 10)
 	public void verifyg2ShareFile(){
 		String baseProduct = "/sharefile";
 		
@@ -218,7 +218,7 @@ public class Test_SupportWelcome_Page {
 		}
 	}	
 	
-	@Test (priority = 10)
+	@Test (priority = 11)
 	public void verifyg2ShareConnect(){
 		String baseProduct = "/shareconnect";
 		
@@ -235,11 +235,13 @@ public class Test_SupportWelcome_Page {
 		}
 	}	
 	
-	@Test (priority = 11)
+	
+	@Test (priority = 12)
 	public void verifyg2AssistCorporate(){
 		String baseProduct = "/gotoassistcorporate";
 		
 		try{
+			Thread.sleep(3000);
 			welcomePg.g2AssistDropDown.click();
 			welcomePg.g2AssistCorp.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
@@ -248,16 +250,21 @@ public class Test_SupportWelcome_Page {
 		catch(AssertionError ex){
 			System.out.println("Something went wrong in the verifyg2AssistCorporate() : " + ex.toString());
 		}
+		catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		finally{
 			driver.navigate().back();
 		}
 	}	
-	
-	@Test (priority = 12)
+
+	@Test (priority = 13)
 	public void verifyg2AssistRemote(){
 		String baseProduct = "/gotoassistremotesupport";
 		
 		try{
+			Thread.sleep(3000);
 			welcomePg.g2AssistDropDown.click();
 			welcomePg.g2AssistRem.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
@@ -266,41 +273,56 @@ public class Test_SupportWelcome_Page {
 		catch(AssertionError ex){
 			System.out.println("Something went wrong in the verifyg2AssistRemote() : " + ex.toString());
 		}
+		catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		finally{
 			driver.navigate().back();
+			
 		}
 	}	
 	
-	@Test (priority = 12)
+	@Test (priority = 14)
 	public void verifyg2AssistService(){
 		String baseProduct = "/gotoassistservicedesk";
 		
 		try{
-			welcomePg.g2AssistDropDown.click();
+			Thread.sleep(3000);
+			welcomePg.g2AssistDropDown.click();			
 			welcomePg.g2AssistServ.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
 			System.out.println("Confirmed: I went to GoToAssist Service Desk page");			
 		}
 		catch(AssertionError ex){
 			System.out.println("Something went wrong in the verifyg2AssistService() : " + ex.toString());
+		} 
+		catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		finally{
 			driver.navigate().back();
 		}
 	}	
 	
-	@Test (priority = 13) 
+	@Test (priority = 15) 
 	public void verifyg2WsCloud(){
 		String wsUrl = "https://www.citrix.com/products/workspace-cloud/support.html";
-		try{			
+		try{
+			Thread.sleep(3000);
 			welcomePg.moreProductsDropDown.click();				
 			welcomePg.g2WsCloud.click();
 			Assert.assertEquals(driver.getCurrentUrl(), wsUrl);
 			System.out.println("Confirmed: I went to Workspace Cloud Product page");			
 		}
-		catch(Exception ex)
+		catch(AssertionError ex)
 		{
 			System.out.println("Something went wrong in the verifyg2WsCloud()" + ex.toString());
+		}
+		catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		finally{
 			driver.navigate().back();
@@ -308,18 +330,24 @@ public class Test_SupportWelcome_Page {
 
 	}
 	
-	@Test (priority = 14) 
+	
+	@Test (priority = 16) 
 	public void verifyg2WsConcierge(){
 		String baseProduct = "/concierge";
-		try{			
+		try{
+			Thread.sleep(3000);
 			welcomePg.moreProductsDropDown.click();				
 			welcomePg.g2Concierge.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
 			System.out.println("Confirmed: I went to Concierge Product page");			
 		}
-		catch(Exception ex)
+		catch(AssertionError ex)
 		{
 			System.out.println("Something went wrong in the verifyg2Concierge()" + ex.toString());
+		}
+		catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		finally{
 			driver.navigate().back();

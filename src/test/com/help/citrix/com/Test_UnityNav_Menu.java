@@ -15,7 +15,7 @@ import page.factory.helper.BrowserFactory;
 
 public class Test_UnityNav_Menu{
 	WebDriver driver;
-	String baseEnv = "ed1";
+	String baseEnv = "";
 	String baseProduct = "";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";	
 	UnityNav unityNavMenu;

@@ -16,7 +16,7 @@ public class JoinHelp_Page {
 	static int WAIT_TIME = 15;
 	
 		
-	@FindBy(how=How.CSS, using = "h3..join-help-head1")
+	@FindBy(how=How.CSS, using = "h3.join-help-head1")
 		public WebElement pageHeading;
 	
 	@FindBy(how=How.CSS, using = ".icon-s>img[src$='icon-people.png']")

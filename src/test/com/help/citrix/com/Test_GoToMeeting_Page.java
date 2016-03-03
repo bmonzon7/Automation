@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 public class Test_GoToMeeting_Page {	
 	WebDriver driver;	
 	GoToMeeting_Page g2MeetingPg;
-	String baseEnv = "ed1";
+	String baseEnv = "";
 	String baseProduct = "/meeting";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	
@@ -51,7 +51,7 @@ public class Test_GoToMeeting_Page {
 	public void verifyGoToMeetingPage(){
 		g2MeetingPg = new GoToMeeting_Page(driver);
 	
-		/*
+		
 		//Category Headings
 		for (WebElement wE : g2MeetingPg.categoriesHeaders ){
 			System.out.println("The Category Heading text is: " + wE.getText());
@@ -82,14 +82,17 @@ public class Test_GoToMeeting_Page {
 			System.out.println("The How-To Video Article url is: " +wE.getAttribute("href"));
 			}
 	
-		*/
 		
+
 		//Icon Header Text
 		for(WebElement wE : g2MeetingPg.iconHeader){
 			System.out.println("The Icon Header text is: " + wE.getText());
 			}
-		/*
-		//Icon Header Links
+		
+		//Icon Header Links - go to each link 
+		/* This must be commented out for now because every time I load the tab and return to original tab
+		 * the DOM is refreshed and it says it cant find the original link
+		 */
 		List<String> urls = new ArrayList<String>();
 		
 		for (int i = 0; i<g2MeetingPg.iconHeaderLink.size(); i++){
@@ -102,20 +105,24 @@ public class Test_GoToMeeting_Page {
 			driver.findElement(By.cssSelector("body")).sendKeys(Keys.COMMAND +"w");
 		}
 		
-		*/
+		g2MeetingPg = null;
+		
+		g2MeetingPg = new GoToMeeting_Page(driver);
 		
 		for(WebElement wE : g2MeetingPg.iconHeaderLink){
-//			System.out.println("The Icon Header Link text is: " + wE.getText());
-//			System.out.println("The Icon Header Link url is: " +wE.getAttribute("href"));
-			
+			System.out.println("The Icon Header Link text is: " + wE.getText());
+			System.out.println("The Icon Header Link url is: " +wE.getAttribute("href"));
+			//wE.click();
+			//Trying to work with browser opening new tabs for links - bug being fixed
+			/*
 			Actions newTab = new Actions(driver);
 			newTab.sendKeys(Keys.COMMAND).click(wE).build().perform();
 			
 			//driver.findElement(By.cssSelector("body")).sendKeys(Keys.COMMAND +"w");
 			//driver.get(wE.getAttribute("href"));
-			String selectAll = Keys.chord(Keys.CONTROL, Keys.SHIFT, Keys.TAB);
-		//	driver.findElement(By.cssSelector("body")).sendKeys(selectAll);
-			
+			//String selectAll = Keys.chord(Keys.CONTROL, Keys.SHIFT, Keys.TAB);
+			//driver.findElement(By.cssSelector("body")).sendKeys(selectAll);
+			*/
 			
 		}
 		
@@ -133,7 +140,19 @@ public class Test_GoToMeeting_Page {
 	
 	}
 	
-	
+	@AfterTest
+	public void closeBrowser(){
+		try{
+			driver.quit();
+		}
+		catch(Exception e){
+			System.out.println("Exception in trying to close Browser: " + e.toString());
+			throw(e);
+		}
+		finally{
+			
+		}
+	}
 	
 	
 }
