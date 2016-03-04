@@ -1,5 +1,7 @@
 package com.help.citrix;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,8 +19,19 @@ public class Contact_Us_Page {
 	@FindBy(how=How.CSS, using = "")
 		public WebElement placeHolder;
 	
-	@FindBy(how=How.CSS, using = "h3#productheading")
-		WebElement productHeading;
+	@FindBy(how=How.CSS, using="span#sublogo")
+		public WebElement productLogo;
+	
+	@FindBy(how=How.CSS, using="span.prod-name")
+		public WebElement productName;
+	
+	
+	@FindBy(how=How.CSS, using = ".row.product-box")
+		public List<WebElement> catContainer;
+	
+	
+	@FindBy(how=How.CSS, using = "#productheading")
+		public WebElement contactUsPageNoProdSelectedHeader;
 	
 	@FindBy(how=How.CSS, using = "span.meeting.logos")
 		public WebElement g2Meeting;
@@ -32,7 +45,16 @@ public class Contact_Us_Page {
 
 	@FindBy(how=How.CSS, using = "span.gotoassist.logos")
 		public WebElement g2Assist;
-
+	
+	@FindBy(how=How.CSS, using = "span.gotoassistcorporate.logos")
+		public WebElement g2AssistCorp;
+	
+	@FindBy(how=How.CSS, using = "span.gotoassistservicedesk.logos")
+	public WebElement g2AssistService;
+	
+	@FindBy(how=How.CSS, using = "span.gotoassistremotesupport.logos")
+	public WebElement g2AssistRemote;
+	
 	@FindBy(how=How.CSS, using = "span.concierge.logos")
 		public WebElement g2Concierge;
 	
@@ -58,10 +80,10 @@ public class Contact_Us_Page {
 		
 	}
 	
-	public String getProdHeadingText(){
+	public String getSupportPageHeader(){
 		String txt;
 		System.out.println("Inside the getProdHeadingText()");
-		txt = productHeading.getText();
+		txt = contactUsPageNoProdSelectedHeader.getText();
 		return txt;
 	}
 	

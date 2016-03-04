@@ -15,12 +15,14 @@ public class BrowserFactory {
 	
 	public static WebDriver startBrowser(String browserName, String url){
 		
-		if(browserName.equalsIgnoreCase("firefox")){
+		if(browserName.equalsIgnoreCase("Firefox")){
 			
 			//To create the Profile for Firefox run this in the MAC terminal:
 			///			Applications/Firefox.app/Contents/MacOS/firefox-bin -P
 			ProfilesIni profile = new ProfilesIni();
-			FirefoxProfile ffProfile = profile.getProfile("selenium");
+			
+			FirefoxProfile ffProfile = new FirefoxProfile();
+			ffProfile = profile.getProfile("selenium");
 			driver = new FirefoxDriver(ffProfile);
 		}
 		

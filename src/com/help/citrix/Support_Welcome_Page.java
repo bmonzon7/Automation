@@ -24,6 +24,10 @@ public class Support_Welcome_Page {
 		 PageFactory.initElements(new AjaxElementLocatorFactory(driver, WAIT_TIME), this);
 	}
 	
+	@FindBy(how=How.CSS, using = ".citrix-lt-34px.lightgrey")
+	public WebElement productName;
+
+	
 	
 	
 	/* GoToMeeting */

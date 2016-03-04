@@ -66,6 +66,8 @@ public class Test_SupportWelcome_Page {
 		try{
 			
 			welcomePg.g2Meeting.click();			
+			String productName = welcomePg.productName.getText();
+			System.out.println("The product I am currently testing is: " + productName);
 			driver.findElement(By.cssSelector("#sublogo")).click();			
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
 			System.out.println("Confirmed: I went to g2M and now I am in the Support Welcome Landing Page");
@@ -106,7 +108,8 @@ public class Test_SupportWelcome_Page {
 			
 			welcomePg.moreProductsDropDown.click();				
 			welcomePg.g2Grasshopper.click();
-			Assert.assertEquals(driver.getCurrentUrl(), grasshopperUrl);
+			Assert.assertEquals(driver.getCurrentUrl(), grasshopperUrl);	
+			System.out.println("The product I am currently testing is: " + driver.getTitle());
 			System.out.println("Confirmed: I went to Grasshopper Product page");			
 		}
 		catch(Exception ex)
@@ -126,6 +129,8 @@ public class Test_SupportWelcome_Page {
 		try{
 			welcomePg.g2Web.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			String productName = welcomePg.productName.getText();
+			System.out.println("The product I am currently testing is: " + productName);
 			System.out.println("Confirmed: I went to GoToWebinar page");			
 		}
 		catch(AssertionError ex){
@@ -142,6 +147,8 @@ public class Test_SupportWelcome_Page {
 		try{
 			welcomePg.g2Training.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			String productName = welcomePg.productName.getText();
+			System.out.println("The product I am currently testing is: " + productName);
 			System.out.println("Confirmed: I went to GoToTraining page");			
 		}
 		catch(AssertionError ex){
@@ -158,6 +165,8 @@ public class Test_SupportWelcome_Page {
 		try{
 			welcomePg.g2MyPC.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			String productName = welcomePg.productName.getText();
+			System.out.println("The product I am currently testing is: " + productName);
 			System.out.println("Confirmed: I went to GoToMyPC page");			
 		}
 		catch(AssertionError ex){
@@ -174,6 +183,8 @@ public class Test_SupportWelcome_Page {
 		try{
 			welcomePg.g2Openvoice.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			String productName = welcomePg.productName.getText();
+			System.out.println("The product I am currently testing is: " + productName);
 			System.out.println("Confirmed: I went to GoToOpenVoice page");			
 		}
 		catch(AssertionError ex){
@@ -191,6 +202,8 @@ public class Test_SupportWelcome_Page {
 		try{
 			welcomePg.g2Podio.click();
 			Assert.assertEquals(driver.getCurrentUrl(), podioUrl);
+			
+			System.out.println("The product I am currently testing is: " + driver.getTitle());
 			System.out.println("Confirmed: I went to Podio page");			
 		}
 		catch(AssertionError ex){
@@ -208,6 +221,7 @@ public class Test_SupportWelcome_Page {
 		try{
 			welcomePg.g2ShareFile.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			System.out.println("The product I am currently testing is: " + driver.getTitle());
 			System.out.println("Confirmed: I went to ShareFile page");			
 		}
 		catch(AssertionError ex){
@@ -225,6 +239,7 @@ public class Test_SupportWelcome_Page {
 		try{
 			welcomePg.g2ShareConn.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			System.out.println("The product I am currently testing is: " + driver.getTitle());
 			System.out.println("Confirmed: I went to ShareConnect page");			
 		}
 		catch(AssertionError ex){
@@ -245,6 +260,8 @@ public class Test_SupportWelcome_Page {
 			welcomePg.g2AssistDropDown.click();
 			welcomePg.g2AssistCorp.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			String productName = welcomePg.productName.getText();
+			System.out.println("The product I am currently testing is: " + productName);
 			System.out.println("Confirmed: I went to GoToAssist Corporate page");			
 		}
 		catch(AssertionError ex){
@@ -268,6 +285,8 @@ public class Test_SupportWelcome_Page {
 			welcomePg.g2AssistDropDown.click();
 			welcomePg.g2AssistRem.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			String productName = welcomePg.productName.getText();
+			System.out.println("The product I am currently testing is: " + productName);
 			System.out.println("Confirmed: I went to GoToAssist Remote Support page");			
 		}
 		catch(AssertionError ex){
@@ -292,6 +311,8 @@ public class Test_SupportWelcome_Page {
 			welcomePg.g2AssistDropDown.click();			
 			welcomePg.g2AssistServ.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			String productName = welcomePg.productName.getText();
+			System.out.println("The product I am currently testing is: " + productName);
 			System.out.println("Confirmed: I went to GoToAssist Service Desk page");			
 		}
 		catch(AssertionError ex){
@@ -314,6 +335,7 @@ public class Test_SupportWelcome_Page {
 			welcomePg.moreProductsDropDown.click();				
 			welcomePg.g2WsCloud.click();
 			Assert.assertEquals(driver.getCurrentUrl(), wsUrl);
+			System.out.println("The product I am currently testing is: " + driver.getTitle());
 			System.out.println("Confirmed: I went to Workspace Cloud Product page");			
 		}
 		catch(AssertionError ex)
@@ -339,6 +361,8 @@ public class Test_SupportWelcome_Page {
 			welcomePg.moreProductsDropDown.click();				
 			welcomePg.g2Concierge.click();
 			Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
+			String productName = welcomePg.productName.getText();
+			System.out.println("The product I am currently testing is: " + productName);
 			System.out.println("Confirmed: I went to Concierge Product page");			
 		}
 		catch(AssertionError ex)
