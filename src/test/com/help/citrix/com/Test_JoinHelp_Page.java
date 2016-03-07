@@ -22,7 +22,7 @@ public class Test_JoinHelp_Page {
 	WebDriver driver;
 	JoinHelp_Page joinHelppg;
 	//String browserName = "firefox";
-	String baseEnv = "";
+	String baseEnv = "ed1";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	String baseProduct ="/meeting/joinhelp";
 	String supportUrl = "/support";

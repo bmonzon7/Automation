@@ -20,7 +20,7 @@ import page.factory.helper.BrowserFactory;
 public class Test_Contact_Us_Page {
 	WebDriver driver;
 	Contact_Us_Page contactUsPage;	
-	String baseEnv = "";
+	String baseEnv = "ed1";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	//String baseContactUs ="/contact-us";
 	String supportUrl = "/support";

@@ -6,8 +6,13 @@
 		<parameter name="browser" value="Firefox" /> 
 		<classes> 
 		
-			<class name="test.com.help.citrix.com.Test_Contact_Us_Page"> </class>
+		
+		<class name="test.com.help.citrix.com.Test_ScheduleMeeting_Page"> </class>
+		
+			
 			 <!-- 
+			 <class name="test.com.help.citrix.com.Test_Contact_Us_Page"> </class>
+			 
 			<class name="test.com.help.citrix.com.Test_SupportWelcome_Page"></class>
 			
 			<class name="test.com.help.citrix.com.Test_JoinHelp_Page"></class>	

@@ -18,7 +18,7 @@ public class BrowserFactory {
 		if(browserName.equalsIgnoreCase("Firefox")){
 			
 			//To create the Profile for Firefox run this in the MAC terminal:
-			///			Applications/Firefox.app/Contents/MacOS/firefox-bin -P
+			///	Applications/Firefox.app/Contents/MacOS/firefox-bin -P
 			ProfilesIni profile = new ProfilesIni();
 			
 			FirefoxProfile ffProfile = new FirefoxProfile();

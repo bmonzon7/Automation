@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class Test_GoToMeeting_App_Page {	
 	WebDriver driver;	
 	GoToMeeting_App_Page g2MeetingPg;
-	String baseEnv = "";
+	String baseEnv = "ed1";
 	String baseProduct = "";
 	String baseUrl = "http://www.gotomeeting.com";
 	String browserName = "chrome";
