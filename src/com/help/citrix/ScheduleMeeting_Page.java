@@ -64,7 +64,6 @@ public class ScheduleMeeting_Page {
 	/* Headers
 	 * 
 	 */
-	
 		//Header - Category chosen = Schedule & Start Meetings
 		@FindBy(how=How.CSS, using = ".citrix-lt-36px-grey")
 		public WebElement pageHeader;
@@ -72,7 +71,6 @@ public class ScheduleMeeting_Page {
 	/* Subcategory Headers
 	 * 
 	 */
-		
 		//Subcategory headers
 		@FindBy(how=How.CSS, using = ".large-6.medium-6.small-12.columns>h2")
 			public List<WebElement> subCatHeaders;
@@ -85,7 +83,7 @@ public class ScheduleMeeting_Page {
 		@FindBy(how=How.CSS, using = ".contactLogos>div>p")
 		public WebElement stillNeedHelpHeader;
 	
-		/* Article Containers
+	/* Article Containers
 		 * 
 		 */
 		//Get help from community articles
@@ -100,4 +98,21 @@ public class ScheduleMeeting_Page {
 		//Column 2 Articles
 		@FindBy(how=How.CSS, using = ".large-6.medium-6.small-12.columns:nth-of-type(2)>h2 +ul:nth-of-type(1)>li>a")
 			public List<WebElement> col2Articles;
+		
+		
+		public void clickCallUsButton(){
+			System.out.println("Inside clickCallUsButton()");
+			this.callEmailUsButton.click();
+			
+			
+		}
+		
+		public void clickChatButton(){
+			System.out.println("Inside clickChatButton()");
+			this.chatButton.click();
+			
+			
+		}
+		
+		
 }

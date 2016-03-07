@@ -1,11 +1,8 @@
 package test.com.help.citrix.com;
 
-import java.util.ArrayList;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -32,7 +29,7 @@ public class Test_ScheduleMeeting_Page {
 		}
 	}
 	
-	@Test
+	@Test (priority=0)
 	public void verifyScheuleMeetingPage(){
 		scheduleMtngPage = new ScheduleMeeting_Page(driver);
 	
@@ -106,29 +103,72 @@ public class Test_ScheduleMeeting_Page {
 		
 		//TopSearch input box
 		System.out.println("Top Search Input Box Text is: " + scheduleMtngPage.topSearchInput.getAttribute("placeholder"));
-				
+		System.out.println("");
+		
 		//TopSearch input box button
 		System.out.println("Top Search Input Button is: " + scheduleMtngPage.topSearchButton.getText());
+		System.out.println("");
 		
 		//Bottom Search input box
 		System.out.println("Bottom Search input box Text is: " + scheduleMtngPage.bottomSearchInput.getAttribute("placeholder"));
-				
+		System.out.println("");		
+		
 		//Bottom Search input box button
 		System.out.println("Bottom Search Input Button Text is: " + scheduleMtngPage.bottomSearchButton.getText());
+		System.out.println("");
 		
 		//Call or email us button
 		System.out.println("Call or email us button Text is: " + scheduleMtngPage.callEmailUsButton.getText());
+		System.out.println("");
 		
 		//Chat with an agent button
 		System.out.println("Chat with an agent Button Text is: " + scheduleMtngPage.chatButton.getText());
 		System.out.println("");
-		System.out.println("");
-		System.out.println("");
+		//System.out.println("");
+		//System.out.println("");
 		
 	}	
 		
+	@Test (priority=1)
+	public void clickCallorEmailUs(){
+		try{
+			scheduleMtngPage.clickCallUsButton();
+			System.out.println("The Call or Email Us button took me to page: " +  driver.getCurrentUrl());		
+			Assert.assertTrue(driver.getCurrentUrl().contains("citrix.com/contactus"));
+			System.out.println("");
+			
+			
+		}
+		catch(AssertionError ex){
+			System.out.println("Something went wrong in the clickCallUsButton()");
+			System.out.println("");
+		}
+		finally{
+			driver.navigate().back();
+		}
+	}
 	
-	
+	@Test (priority=2)
+	public void clickChat(){
+		
+		try{
+			scheduleMtngPage.clickChatButton();
+			System.out.println("The Chat button took me to page: " +  driver.getCurrentUrl());
+			Assert.assertTrue(driver.getCurrentUrl().contains("http://www.gotoassist.com/sb/gtm"));
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");		
+		}
+		catch(AssertionError ex){
+			System.out.println("Something went wrong in the clickChatButton()");
+			System.out.println("");
+		}
+		finally{
+			driver.navigate().back();
+		}
+		
+	}
 	
 	@AfterTest
 	public void closeBrowser(){
@@ -137,12 +177,14 @@ public class Test_ScheduleMeeting_Page {
 		}
 		catch(Exception e){
 			System.out.println("Exception in trying to close Browser: " + e.toString());
+			
 			throw(e);
 		}
 		finally{
 			
 		}
 	}
+	
 	
 	
 }

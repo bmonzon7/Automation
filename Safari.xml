@@ -5,12 +5,17 @@
 	<test name="SafariTest"> 
 		<parameter name="browser" value="Safari" /> 
 		<classes> 
-			<class name="test.com.help.citrix.com.Test_SupportWelcome_Page"></class>		 
-			<class name="test.com.help.citrix.com.Test_JoinHelp_Page"></class>	
-			<class name="test.com.help.citrix.com.Test_GoToMeeting_Page" ></class>	
-			<class name="test.com.help.citrix.com.Test_Contact_Us_Page"> </class>			
-			<class name="test.com.help.citrix.com.Test_MoreFromCitrix_Menu"></class>	
-			<class name="test.com.help.citrix.com.Test_UnityNav_Menu"></class> 		
+		<!-- 
+			<class name="test.com.help.citrix.com.Test_ScheduleMeeting_Page"> </class>	
+			<class name="test.com.help.citrix.com.Test_Contact_Us_Page"> </class>
+			-->			 
+			<class name="test.com.help.citrix.com.Test_SupportWelcome_Page"></class>			
+			<!-- 
+			<class name="test.com.help.citrix.com.Test_JoinHelp_Page"></class>				
+			<class name="test.com.help.citrix.com.Test_GoToMeeting_Page" ></class>									
+			<class name="test.com.help.citrix.com.Test_MoreFromCitrix_Menu"></class>			
+			<class name="test.com.help.citrix.com.Test_UnityNav_Menu"></class> 	
+			 -->
 		</classes>
  	</test>  	
  </suite>

@@ -45,6 +45,7 @@ public class Test_SupportWelcome_Page {
 	@Test (priority = 1)
 	public void verifySupportWelcomeLandingPage(){
 		try{
+			driver.manage().deleteAllCookies();
 			welcomePg = new Support_Welcome_Page(driver);					
 		 	Assert.assertEquals(driver.getCurrentUrl(), (baseUrl+baseProduct));
 		 	System.out.println("Confirmed: I am in the Support Welcome Landing Page");
