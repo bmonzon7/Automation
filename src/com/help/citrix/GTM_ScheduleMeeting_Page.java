@@ -10,13 +10,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ScheduleMeeting_Page {
+public class GTM_ScheduleMeeting_Page {
 	WebDriver driver;
 	WebDriverWait wait;
 	static int WAIT_TIME = 15;
 	
 	
-	public ScheduleMeeting_Page(WebDriver driver){
+	public GTM_ScheduleMeeting_Page(WebDriver driver){
 		this.driver = driver;
 		PageFactory.initElements(new AjaxElementLocatorFactory(driver, WAIT_TIME), this);
 	}

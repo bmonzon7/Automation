@@ -8,13 +8,13 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.help.citrix.ScheduleMeeting_Page;
+import com.help.citrix.GTM_ScheduleMeeting_Page;
 
 import page.factory.helper.BrowserFactory;
 
-public class Test_ScheduleMeeting_Page {
+public class Test_GTM_ScheduleMeeting_Page {
 	WebDriver driver;	
-	ScheduleMeeting_Page scheduleMtngPage;
+	GTM_ScheduleMeeting_Page scheduleMtngPage;
 	String baseEnv = "ed1";
 	String baseProduct = "/meeting/schedulemeeting";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
@@ -31,7 +31,7 @@ public class Test_ScheduleMeeting_Page {
 	
 	@Test (priority=0)
 	public void verifyScheuleMeetingPage(){
-		scheduleMtngPage = new ScheduleMeeting_Page(driver);
+		scheduleMtngPage = new GTM_ScheduleMeeting_Page(driver);
 	
 		
 		//Left Hand Navigation - Categories
