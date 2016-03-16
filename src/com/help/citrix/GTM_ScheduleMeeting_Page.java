@@ -8,11 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GTM_ScheduleMeeting_Page {
 	WebDriver driver;
-	WebDriverWait wait;
+	//WebDriverWait wait;
 	static int WAIT_TIME = 15;
 	
 	

@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class Test_SupportWelcome_Page {	
 	WebDriver driver;	
 	Support_Welcome_Page welcomePg;
-	String baseEnv = "ed1";
+	String baseEnv = "stage";
 	String baseProduct = "/support";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	

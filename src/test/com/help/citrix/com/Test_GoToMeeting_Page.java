@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 public class Test_GoToMeeting_Page {	
 	WebDriver driver;	
 	GoToMeeting_Page g2MeetingPg;
-	String baseEnv = "ed1";
+	String baseEnv = "stage";
 	String baseProduct = "/meeting";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	

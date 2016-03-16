@@ -4,14 +4,15 @@
 <suite name="TestSuite" thread-count="2" parallel="tests" >
 	<test name="FirefoxTest"> 
 		<parameter name="browser" value="Firefox" /> 
-		<classes> 
-			<class name="test.com.help.citrix.com.Test_ScheduleMeeting_Page"> </class>	
-			<class name="test.com.help.citrix.com.Test_Contact_Us_Page"> </class>			 
+		<classes> 		 
+			<class name="test.com.help.citrix.com.Test_GTM_ScheduleMeeting_Page"> </class>			
+			<class name="test.com.help.citrix.com.Test_Contact_Us_Page"> </class>			
 			<class name="test.com.help.citrix.com.Test_SupportWelcome_Page"></class>			
 			<class name="test.com.help.citrix.com.Test_JoinHelp_Page"></class>				
 			<class name="test.com.help.citrix.com.Test_GoToMeeting_Page" ></class>									
 			<class name="test.com.help.citrix.com.Test_MoreFromCitrix_Menu"></class>			
-			<class name="test.com.help.citrix.com.Test_UnityNav_Menu"></class> 		
+			<class name="test.com.help.citrix.com.Test_UnityNav_Menu"></class>
+					
 		</classes>
  	</test>  	
  </suite>

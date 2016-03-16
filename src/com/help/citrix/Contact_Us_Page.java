@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Contact_Us_Page {
 	WebDriver driver;
 	WebDriverWait wait;
-	static int WAIT_TIME = 15;
+	static int WAIT_TIME = 60;
 	
 	
 	@FindBy(how=How.CSS, using = "")
@@ -73,6 +73,19 @@ public class Contact_Us_Page {
 	@FindBy(how=How.CSS, using = "span.grasshopper.logos")
 	public WebElement g2Grasshopper;
 
+	@FindBy(how=How.CSS, using = ".tabs.resp-tabs-list.tooltip-container>li")
+		public List<WebElement> toolTipContainer;
+	
+	@FindBy(how=How.CSS, using = ".tabs.resp-tabs-list.tooltip-container>li.ask-tab.large-4.medium-4.small-12")
+		public WebElement askCommToolTip;
+ 
+	@FindBy(how=How.CSS, using = ".tabs.resp-tabs-list.tooltip-container"
+			+ ">li.case-tab.large-4.medium-4.small-12")
+		public WebElement createTicketToolTip;
+	
+	@FindBy(how=How.CSS, using = ".tabs.resp-tabs-list.tooltip-container"
+			+ ">li.call-tab.large-4.medium-4.small-12")
+		public WebElement callToolTip;
 	
 	public Contact_Us_Page(WebDriver driver){
 		this.driver = driver;
@@ -87,5 +100,25 @@ public class Contact_Us_Page {
 		return txt;
 	}
 	
-	
+	public void verifyToolTipContainer(){
+		for (WebElement wE: this.toolTipContainer){
+			System.out.println("1. The toolTipContainer WebElementText is: " + wE.getText());
+			
+			this.askCommToolTip.click();
+			System.out.println("2. After askCommToolTip Click "); 
+			System.out.println("3. The askCommToolTip WebElement Text is: " + askCommToolTip.getText());
+			
+			this.createTicketToolTip.click();
+			System.out.println("4. After createTicketToolTip Click ");
+			System.out.println("5. The createTicketToolTipTitle WebElement Text is: " + createTicketToolTip.getText());
+			
+			this.callToolTip.click();			
+			System.out.println("6. After callToolTip Click ");
+			System.out.println("7. The callToolTipTitle WebElement Text is: " + callToolTip.getText());
+			System.out.println("");
+		
+			
+		}
+	}
 }
+

@@ -7,15 +7,14 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.help.citrix.GTM_ScheduleMeeting_Page;
-
 import page.factory.helper.BrowserFactory;
+
 
 public class Test_GTM_ScheduleMeeting_Page {
 	WebDriver driver;	
 	GTM_ScheduleMeeting_Page scheduleMtngPage;
-	String baseEnv = "ed1";
+	String baseEnv = "stage";
 	String baseProduct = "/meeting/schedulemeeting";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	
