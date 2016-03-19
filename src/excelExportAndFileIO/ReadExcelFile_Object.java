@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -28,7 +30,7 @@ import test.com.help.citrix.com.*;
 public class ReadExcelFile_Object {
 	WebDriver driver;	
 	GTW_Join_Help_Page gtwJoinHelp;	
-	String baseEnv = "stage";
+	String baseEnv = "";
 	String baseProduct = "/webinar/join";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	String browser="Firefox";
@@ -126,18 +128,78 @@ public class ReadExcelFile_Object {
  @Test(dataProvider="loginData")
  public void testCategoryNames(String usnm, HashMap<String, String> data){
 	 
-	 
-	 int i = 0;
-	 
-	 if (usnm.contains("Join Page Trying to Join")){
-		 i = 0;		
-	 }
-	 
+	 List<WebElement> catCotainer = null;
 	 
 	 for (Map.Entry<String, String> entry : data.entrySet()){
 		 String key = entry.getKey();
 		 String value = entry.getValue();
 	
+		 switch(key.trim()){
+		 case "CategoryName":
+			 for (WebElement wE : gtwJoinHelp.categoryContainer){
+	    			String categoryName = wE.getText();
+	    			if (categoryName.equalsIgnoreCase(value.toString())){
+	    				System.out.println("Category Name match what was expected " + categoryName);
+	    				
+	    				if (categoryName.equalsIgnoreCase("Trying To Join")){
+	    				 catCotainer = driver.findElements(By.xpath(".//"
+	    						+ "*[@id='content-body']/div[4]/div/div/div/div/div/div[2]/div/div/section/div[1]/div[1]/ul/li/a"));
+	    				}
+	    				else if (categoryName.equalsIgnoreCase("Videos")){
+	    					catCotainer = driver.findElements(By.xpath(".//"
+		    						+ "*[@id='content-body']/div[4]/div/div/div/div/div/div[2]/div/div/section/div[1]/div[2]/ul/li/a"));
+		    				
+	    				}
+	    				else if (categoryName.equalsIgnoreCase("During Your Webinar")){
+	    					catCotainer = driver.findElements(By.xpath(".//*[@id='content-body']/div[4]/div/div/div/div/div/div[2]"
+	    							+ "/div/div/section/div[1]/div[2]/ul/li/a"));
+	    				}
+	    				else if (categoryName.equalsIgnoreCase("More Help")){
+	    					catCotainer = driver.findElements(By.xpath(".//*[@id='content-body']/div[4]/div/div/div/div/div/div[2]"
+	    							+ "/div/div/section/div[2]/div[2]/ul/li/a"));
+	    				} 
+	    				break;
+	    			}
+	    			else{
+	    				System.out.println("Category Name did not match expected article : " + value.trim());
+	    			}
+	    		}
+			 break;
+		 case "ArticleName":
+			 		for (WebElement wE : catCotainer){
+		    			String articleName = wE.getText();
+		    			if (articleName.equalsIgnoreCase(value.toString())){
+		    				System.out.println("Article matched expected " + articleName);
+		    				break;
+		    			}
+		    		}
+			 		//System.out.println("The Article did not match expected article : " + value.trim());
+		    		break;
+		 case "ArticleURL":
+			 boolean bFound = false;
+			 
+			 for (WebElement wE : catCotainer){
+	    			String articleURL = wE.getAttribute("href");
+	    			if (articleURL.contains(value.trim())){
+	    				bFound = true;
+	    			}
+	    		
+			 if (bFound == true){
+				 System.out.println("Article URL matched ");
+				 break;
+			 }
+			 
+		 }
+	 }
+	 }
+ }
+}
+ 
+
+		 
+		 
+		 
+		 /*
 		  if (key.equalsIgnoreCase("CategoryName") || key.equalsIgnoreCase("ArticleName") || key.equalsIgnoreCase("ArticleURL")){
 		    	//System.out.println("The css object category text is: " + gtwJoinHelp.category1Name.getText());
 		    	if (key.equalsIgnoreCase("CategoryName")){
@@ -172,7 +234,7 @@ public class ReadExcelFile_Object {
 		  }
 	 }
  }
-
+*/
 	    	
 		    	/*
 		    	if (key.equalsIgnoreCase("ArticleURL")){		    	 
