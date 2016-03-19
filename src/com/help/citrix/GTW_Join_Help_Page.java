@@ -20,8 +20,13 @@ public class GTW_Join_Help_Page {
 	//Category - Trying to Join
 	@FindBy(how=How.XPATH, using = ".//*[@id='content-body']/div[4]/div/div/div/div/div/div[2]"
 			+ "/div/div/section/div[1]/div[1]/h2")
-		public WebElement category1ListName;
+		public WebElement category1NameXPATH;
 	
+	
+	//Category - Trying to Join
+		@FindBy(how=How.CSS, using = ".large-6.medium-6.small-12.columns>h2")
+			public List<WebElement> categoryList;	
+		
 	@FindBy(how=How.XPATH, using = "//*[@id='content-body']/div[4]/div/div/div/div/div/div[2]"
 			+ "/div/div/section/div[2]/div[1]/h2")
 		public WebElement category2ListName;

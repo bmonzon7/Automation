@@ -41,15 +41,11 @@ public class Test_GTW_Join_Help_Page {
 		gtwJoinHelp = new GTW_Join_Help_Page(driver);
 	}
 	
-	@Test (dataProvider = "DataSource")
-	public void urlNameAddressTest(String category, String linkName, String url){
-		
-		
-	}
-	
+
 	@Test (priority = 0)
 	public void verifyFirstCategory(){
-		System.out.println("The inner text for the first category is: " + gtwJoinHelp.category1ListName.getText());
+		System.out.println("The inner text for the first category is: " + gtwJoinHelp.category1NameXPATH.getText());
+			
 		System.out.println("");
 		System.out.println("The Category 1 Article Names are: ");
 		System.out.println("-------------------------------------------------------");
