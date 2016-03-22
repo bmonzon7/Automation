@@ -16,27 +16,27 @@ public class GTW_Join_Help_Page {
 	//Page header information
 	@FindBy(how=How.CSS, using="")
 		public WebElement pageHeader;
+		
 	
-	//Category - Trying to Join
-	@FindBy(how=How.XPATH, using = ".//*[@id='content-body']/div[4]/div/div/div/div/div/div[2]"
-			+ "/div/div/section/div[1]/div[1]/h2")
-		public WebElement category1NameXPATH;
-	
-	
-	//Category - Trying to Join
+	//Category Container
 		@FindBy(how=How.CSS, using = ".row>.large-6.medium-6.small-12.columns>h2")
 			public List<WebElement> categoryContainer;	
-		
-	@FindBy(how=How.XPATH, using = "//*[@id='content-body']/div[4]/div/div/div/div/div/div[2]"
-			+ "/div/div/section/div[2]/div[1]/h2")
-		public WebElement category2ListName;
+
+	//Category Name = "Trying To Join"
+	@FindBy(how=How.CSS, using = "h1.citrix-lt-36px-grey +div:nth-of-type(1) div:nth-of-type(1)>ul>li>a")
+		public List<WebElement> joinCategoryContainer;
 	
+	//Category Name = "Videos"
+	@FindBy(how=How.CSS, using = "h1.citrix-lt-36px-grey +div:nth-child(2) + div >div:nth-child(1)>ul>li>a")
+		public List<WebElement> videoCategoryContainer;
 	
-	@FindBy(how=How.XPATH, using = ".//*[@id='content-body']/div[4]/div/div/div/div/div/div[2]"
-			+ "/div/div/section/div[1]/div[1]/ul/li/a")
-		public List<WebElement> category1ArticleList;
-	
-	
+	//Category Name = "More Help"
+	@FindBy(how=How.CSS, using = "h1.citrix-lt-36px-grey +div:nth-child(2) + div >div:nth-child(2)>ul>li>a")
+		public List<WebElement> moreHelpCategoryContainer;
+			
+	//Category Name = "During Your Webinar"
+		@FindBy(how=How.CSS, using = "h1.citrix-lt-36px-grey +div:nth-of-type(1) div:nth-of-type(2)>ul>li>a")
+			public List<WebElement> duringWebinarCategoryContainer;	
 		
 	
 	//Articles

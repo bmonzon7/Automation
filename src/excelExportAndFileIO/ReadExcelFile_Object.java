@@ -18,6 +18,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -35,33 +36,45 @@ public class ReadExcelFile_Object {
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	String browser="Firefox";
 	
+	//This is the dataprovider object returned by DataProvider
+	//Returns the Object[String testcaseName][HashMap data]
  public static Object[][] readExcelData(String path, String sheetName) throws IOException{
 	 Object[][] data = null;
+	
+	 //create the wrkbook object
+	 XSSFWorkbook wrkbook = null;
+	 //create the sheet object
+	 XSSFSheet currentSheet = null;
+	 //create the title row data
+	 XSSFRow  titleRow = null;
+		// Create the input stream for Excel file 
+	   InputStream excelfile = null;
+	   
 	 try{
 
-		// Create the input stream for Excel file 
-		   InputStream excelfile = new FileInputStream(path);
+		 excelfile = new FileInputStream(path);
 		
-		// Create the XSSF workbook and sheet object/variables
-		   XSSFWorkbook wrkbook = new XSSFWorkbook(excelfile);
-		   XSSFSheet currentSheet = wrkbook.getSheet(sheetName);
+		 	//Create the XSSF workbook and sheet object/variables
+		   wrkbook = new XSSFWorkbook(excelfile);
+		   currentSheet = wrkbook.getSheet(sheetName);
 		 
 		
-		// Get the Last ROW and Column number  
+		   //Get the Last ROW and Column number  
 		   int lastRow = currentSheet.getLastRowNum();
-		   XSSFRow  titleRow = currentSheet.getRow(0);
+		   titleRow = currentSheet.getRow(0);
 		   int lastCol = titleRow.getLastCellNum();
-		// Create an Object variable with size as Number of rows and 2 columns and HashMap for storing excel data
 		
-		// Here we are storing the test case name in first index and row data as HashMap in second index   
+		   //Create an Object variable with size as Number of rows and 2 columns and HashMap for storing excel data
 		   data = new Object[lastRow][2];
-		   HashMap<String, String> rowdata = new HashMap<String, String>();
+	
+		   // Here we are storing the test case name in first index and row data as HashMap in second index   
+			HashMap<String, String> rowdata = new HashMap<String, String>();
 		
-		// Iterate the through the rows and columns to fetch the data   
+			//Iterate the through the rows and columns to fetch the data   
 		   for(int row=1; row<=lastRow; row++){
 		    XSSFRow currentRow = currentSheet.getRow(row);
 		    Cell firstCell = currentRow.getCell(0);
-		    
+		 
 		    for(int col=0; col<lastCol-1; col++){
 		     rowdata.put(titleRow.getCell(col+1).getStringCellValue(), currentRow.getCell(col+1).getStringCellValue());
 		    }
@@ -77,10 +90,22 @@ public class ReadExcelFile_Object {
 		e.printStackTrace();
 		e.printStackTrace();
 		}
+	 wrkbook.close();
 	 return data;
  }
 
- 
+@AfterTest
+public void closeAll(){
+	
+	try {
+		driver.close();
+	} catch (Exception e) {
+		System.out.println("Exception Data" + e.getMessage());
+		e.printStackTrace();
+	}
+	
+}
+
  		
 @BeforeTest
 	public void getFirstCategoryInfo(){		
@@ -92,7 +117,7 @@ public class ReadExcelFile_Object {
 	}
 	
  
- @DataProvider(name="loginData")
+ @DataProvider(name="loginData") /* This returns 2 objects[string testcase name][hashmap data]*/
  public Object[][] loginData() throws IOException{
  
  return ReadExcelFile_Object.readExcelData(System.getProperty("user.dir")+"//src//excelExportAndFileIO//dataExcel.xlsx","QA_Worksheet1");
@@ -125,130 +150,123 @@ public class ReadExcelFile_Object {
  }
 */
 
- @Test(dataProvider="loginData")
+ @Test(dataProvider="loginData") 
  public void testCategoryNames(String usnm, HashMap<String, String> data){
 	 
 	 List<WebElement> catCotainer = null;
+	 String testCaseName = usnm;
+	 boolean bFound = false;
 	 
+	 System.out.println("Test Case Name: " + testCaseName);
 	 for (Map.Entry<String, String> entry : data.entrySet()){
 		 String key = entry.getKey();
 		 String value = entry.getValue();
 	
 		 switch(key.trim()){
 		 case "CategoryName":
-			 for (WebElement wE : gtwJoinHelp.categoryContainer){
-	    			String categoryName = wE.getText();
-	    			if (categoryName.equalsIgnoreCase(value.toString())){
-	    				System.out.println("Category Name match what was expected " + categoryName);
-	    				
-	    				if (categoryName.equalsIgnoreCase("Trying To Join")){
-	    				 catCotainer = driver.findElements(By.xpath(".//"
-	    						+ "*[@id='content-body']/div[4]/div/div/div/div/div/div[2]/div/div/section/div[1]/div[1]/ul/li/a"));
-	    				}
-	    				else if (categoryName.equalsIgnoreCase("Videos")){
-	    					catCotainer = driver.findElements(By.xpath(".//"
-		    						+ "*[@id='content-body']/div[4]/div/div/div/div/div/div[2]/div/div/section/div[1]/div[2]/ul/li/a"));
-		    				
-	    				}
-	    				else if (categoryName.equalsIgnoreCase("During Your Webinar")){
-	    					catCotainer = driver.findElements(By.xpath(".//*[@id='content-body']/div[4]/div/div/div/div/div/div[2]"
-	    							+ "/div/div/section/div[1]/div[2]/ul/li/a"));
-	    				}
-	    				else if (categoryName.equalsIgnoreCase("More Help")){
-	    					catCotainer = driver.findElements(By.xpath(".//*[@id='content-body']/div[4]/div/div/div/div/div/div[2]"
-	    							+ "/div/div/section/div[2]/div[2]/ul/li/a"));
-	    				} 
+			 bFound = false;
+			 
+			 while (!bFound){
+				 for (int j = 0; j < gtwJoinHelp.categoryContainer.size(); j++){
+					String categoryName = gtwJoinHelp.categoryContainer.get(j).getText();
+					
+					
+					
+	    			if ((categoryName.equalsIgnoreCase("Trying To Join")) && (value.trim().equals(categoryName))){
+	    				System.out.println("Category Name from Excel: " + value.trim());
+	    				System.out.println("Category Name Expected:   " + categoryName);
+	    				catCotainer = gtwJoinHelp.joinCategoryContainer;
+	    				bFound = true;
 	    				break;
 	    			}
-	    			else{
-	    				System.out.println("Category Name did not match expected article : " + value.trim());
-	    			}
-	    		}
-			 break;
-		 case "ArticleName":
-			 		for (WebElement wE : catCotainer){
-		    			String articleName = wE.getText();
-		    			if (articleName.equalsIgnoreCase(value.toString())){
-		    				System.out.println("Article matched expected " + articleName);
-		    				break;
-		    			}
-		    		}
-			 		//System.out.println("The Article did not match expected article : " + value.trim());
-		    		break;
-		 case "ArticleURL":
-			 boolean bFound = false;
-			 
-			 for (WebElement wE : catCotainer){
-	    			String articleURL = wE.getAttribute("href");
-	    			if (articleURL.contains(value.trim())){
+	    				
+	    			else if ((categoryName.equalsIgnoreCase("Videos")) && (value.trim().equals(categoryName))){
+	    				System.out.println("Category Name from Excel: " + value.trim());
+	    				System.out.println("Category Name Expected:   " + categoryName);
+	    				catCotainer = gtwJoinHelp.videoCategoryContainer;
 	    				bFound = true;
+	    				break;
+	    			}	    				
+	    			else if ((categoryName.equalsIgnoreCase("During Your Webinar")) && (value.trim().equals(categoryName))){
+	    				System.out.println("Category Name from Excel: " + value.trim());
+	    				System.out.println("Category Name Expected:   " + categoryName);
+	    				catCotainer = gtwJoinHelp.duringWebinarCategoryContainer;
+	    				bFound = true;
+	    				break;
 	    			}
-	    		
-			 if (bFound == true){
-				 System.out.println("Article URL matched ");
+	    			else if ((categoryName.equalsIgnoreCase("More Help")) && (value.trim().equals(categoryName))){
+	    				System.out.println("Category Name from Excel: " + value.trim());
+	    				System.out.println("Category Name Expected:   " + categoryName);
+	    				catCotainer = gtwJoinHelp.moreHelpCategoryContainer;
+	    				bFound = true;
+	    				break;
+	    			} 
+	    					  			
+	    			else if (bFound == true && j == (gtwJoinHelp.categoryContainer.size()-1)){
+	    				System.out.println("Category Name did not match expected article:  " + value.trim());
+	    				System.out.println("");
+	    				Assert.fail("Article Category Mismatch - Category Expected is not found on web page");
+	    				break;
+	    			}
+				 }
 				 break;
-			 }
+			 }   	
+		break;	
+		 case "ArticleName":
+			 bFound = false;
 			 
+			 while (!bFound){
+				for(int j = 0; j < catCotainer.size(); j++){
+					String articleName = catCotainer.get(j).getText();
+					if (articleName.equalsIgnoreCase(value.trim())){		    				
+	    				bFound = true;	
+	    				System.out.println("Article Name Matched: ");
+	    				System.out.println("Article Name from Excel:  " + value.trim());
+	    				System.out.println("Article Name Expected:    " + articleName);
+	    				
+	    				break;
+	    				}    			
+	    			 if(bFound == false &&  j == (catCotainer.size()-1)){
+	    				System.out.println("Article Name Did Not Match: ");
+	    				System.out.println("");
+	    				Assert.fail("Article Name Mismatch - Expected Article Name is not found on web page");
+	    				break;
+	    			 	}
+	    			
+				}
+				break;
+			 }	
+			break; 
+		 case "ArticleURL":
+			 bFound = false;						 
+			 while (!bFound){
+				for(int j = 0; j < catCotainer.size(); j++){
+					String articleURL = catCotainer.get(j).getAttribute("href");
+					if (articleURL.contains(value.trim())){		    				
+	    				bFound = true;	
+	    				System.out.println("Article URL Matched: ");
+	    				System.out.println("Article URL from Excel:  " + value.trim());
+	    				System.out.println("Article URL Expected:    " + articleURL);
+	    				break;
+	    				}    			
+	    			 if(bFound == false &&  j == (catCotainer.size()-1)){
+	    				System.out.println("Article URL Did Not Match: ");
+	    				System.out.println("");
+	    				Assert.fail("Article URL Mismatch - Expected Article URL is not found on web page");
+	    				break;
+	    			 	}
+	    			 }
+			 break;
 		 }
+		break;		 
 	 }
-	 }
+	 
+	}
+	 System.out.println("");
  }
 }
- 
 
 		 
 		 
 		 
-		 /*
-		  if (key.equalsIgnoreCase("CategoryName") || key.equalsIgnoreCase("ArticleName") || key.equalsIgnoreCase("ArticleURL")){
-		    	//System.out.println("The css object category text is: " + gtwJoinHelp.category1Name.getText());
-		    	if (key.equalsIgnoreCase("CategoryName")){
-		    		System.out.println("The categories match " + value.equalsIgnoreCase(gtwJoinHelp.categoryList.get(i).getText()));	
-		    	}
-		    	else if (!key.equalsIgnoreCase("CategoryName"))
-		    	{
-		    		System.out.println("This is not a Category Value:");
-		    	}
-		    	
-		    	if (key.equalsIgnoreCase("ArticleName")){
-		    		for (WebElement wE : gtwJoinHelp.category1ArticleList){
-		    			String articleName = wE.getText();
-		    			if (articleName.equalsIgnoreCase(value.toString())){
-		    				System.out.println("Article matched " + articleName);
-		    			}		    			
-		    		}
-		    	}
-		    		
-	    		if (key.equalsIgnoreCase("ArticleURL")){
-		    		for (WebElement wE : gtwJoinHelp.category1ArticleList){
-		    			String articleURL = wE.getAttribute("href");
-		    			if (articleURL.contains(value.trim())){
-		    				System.out.println("Article URL matched " + articleURL);
-		    			}	
-		    			else{
-		    				System.out.println("Article URL did not match");
-		    			}
-		    	}
-	    	}
-		    	}
-		  }
-	 }
- }
-*/
-	    	
-		    	/*
-		    	if (key.equalsIgnoreCase("ArticleURL")){		    	 
-		    	 String tmpArticleURL = gtwJoinHelp.category1ArticleList.get(i).getAttribute("href").toString();
-		    	 String expectedArticleURL = value.toString();
-		    	  boolean stringMatches = StringUtils.containsAny(expectedArticleURL, tmpArticleURL);
-		    	 
-		    	 if (!stringMatches){
-		    		 System.out.println("Did not match");
-		    	 }
-		    	 else{
-		    		 System.out.println("MATCH __ The Article URLs matches: ");
-		    	 }	 
-		    	}
-		    	*/
-		 
-
+		
