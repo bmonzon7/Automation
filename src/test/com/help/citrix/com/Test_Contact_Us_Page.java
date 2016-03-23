@@ -16,10 +16,11 @@ import page.factory.helper.BrowserFactory;
 public class Test_Contact_Us_Page {
 	WebDriver driver;
 	Contact_Us_Page contactUsPage;	
-	String baseEnv = "stage";
+	String baseEnv = "ed1";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	//String baseContactUs ="/contact-us";
 	String supportUrl = "/support";
+	String browser = "Firefox";
 	
 	@DataProvider
 	public Object[][] getData() {
@@ -31,9 +32,12 @@ public class Test_Contact_Us_Page {
        }
 	
 	@BeforeTest 
-		@Parameters("browser")
+	//	@Parameters("browser")
 	
-	public void setupContact_Us_Page(String browser){
+	public void setupContact_Us_Page(){
+	//public void setupContact_Us_Page(String browser){
+		//this.browser = browser;
+		
 		System.out.println("@BeforeTest");		
 		driver = BrowserFactory.startBrowser(browser, "about:blank");
 		System.out.println("Browser Name = " + browser);
@@ -67,6 +71,30 @@ public class Test_Contact_Us_Page {
 			//driver.manage().deleteAllCookies();
 		}
 	}
+	@Test (dataProvider="getData")
+	public void verifyAlertBanner(int nontUsed, String baseProduct){
+		try{
+			
+			driver.navigate().to(baseUrl+baseProduct);
+			System.out.println("-------------------- The Alert Banner Test Start --------------------");
+			String currentSite = driver.getCurrentUrl();
+			System.out.println("The current site is: " + currentSite);
+			String alertBannerText = contactUsPage.alertBanner.getText();
+			String alertBannerLearnMoreLink = contactUsPage.alertBanner.getAttribute("href");
+			
+			
+			System.out.println("The Alert Banner Text is: " + alertBannerText);
+			System.out.println("The Alert Banner Learn More URL is: " + alertBannerLearnMoreLink);
+			
+			
+			}
+		catch(Exception ex){
+			System.out.println("Something went wrong in the verifyAlertBanner()");
+			}
+		finally{
+			System.out.println("-------------------- The Alert Banner Test End --------------------");
+		}
+		}
 	
 	
 	@Test (dataProvider="getData")

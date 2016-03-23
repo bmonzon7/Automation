@@ -5,34 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
-import com.help.citrix.GTW_Join_Help_Page;
-
-import page.factory.helper.BrowserFactory;
-import test.com.help.citrix.com.*;
 
 public class DataProviderExcel {
 	/*
 	WebDriver driver;	
 	GTW_Join_Help_Page gtwJoinHelp;	
-	String baseEnv = "";
+	String baseEnv = "ed1";
 	String baseProduct = "/webinar/join";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	String browser="Firefox";
@@ -63,7 +47,11 @@ public class DataProviderExcel {
 		
 		   //Get the Last ROW and Column number  
 		   int lastRow = currentSheet.getLastRowNum();
+		   
+		   //get the first row as the row/colum name (.i.e., TestCaseName)
 		   titleRow = currentSheet.getRow(0);
+		   
+		   //get the number for columns
 		   int lastCol = titleRow.getLastCellNum();
 		
 		   //Create an Object variable with size as Number of rows and 2 columns and HashMap for storing excel data
@@ -96,15 +84,18 @@ public class DataProviderExcel {
 	 return data;
  }
 
+ /*
+	//This is the piece to include in your tests to read the excel data into your tests
  
- @DataProvider(name="articleData") /* This returns 2 objects[string testcase name][hashmap data]*/
+ @DataProvider(name="articleData") // This returns 2 objects[string test case name][hashmap data]
  public Object[][] loginData() throws IOException{
- String excelFilePath = System.getProperty("user.dir")+"//src//excelExportAndFileIO//dataExcel.xlsx";
- String sheetName = "QA_Worksheet1";
+	 String excelFilePath = System.getProperty("user.dir")+"//src//excelExportAndFileIO//dataExcel.xlsx";
+	 String sheetName = "QA_Worksheet1";
 	 
  return DataProviderExcel.readExcelData(excelFilePath,sheetName);
 
  }
+ */
   
 
 }

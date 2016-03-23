@@ -31,7 +31,7 @@ import test.com.help.citrix.com.*;
 public class ReadExcelFile_Object {
 	WebDriver driver;	
 	GTW_Join_Help_Page gtwJoinHelp;	
-	String baseEnv = "";
+	String baseEnv = "ed1";
 	String baseProduct = "/webinar/join";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	String browser="Firefox";

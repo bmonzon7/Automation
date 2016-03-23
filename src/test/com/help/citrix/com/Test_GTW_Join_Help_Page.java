@@ -25,7 +25,7 @@ import page.factory.helper.BrowserFactory;
 public class Test_GTW_Join_Help_Page {	
 	WebDriver driver;	
 	GTW_Join_Help_Page gtwJoinHelp;	
-	String baseEnv = "stage";
+	String baseEnv = "ed1";
 	String baseProduct = "/webinar/join";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	String browser="Firefox";

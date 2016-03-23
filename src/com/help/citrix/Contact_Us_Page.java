@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Contact_Us_Page {
 	WebDriver driver;
 	WebDriverWait wait;
-	static int WAIT_TIME = 60;
+	static int WAIT_TIME = 10;
 	
 	
 	@FindBy(how=How.CSS, using = "")
@@ -87,9 +87,15 @@ public class Contact_Us_Page {
 			+ ">li.call-tab.large-4.medium-4.small-12")
 		public WebElement callToolTip;
 	
+	@FindBy(how=How.CSS, using = "#switch-alert #switch-text")
+		public WebElement alertBanner;
+	
 	public Contact_Us_Page(WebDriver driver){
 		this.driver = driver;
 		PageFactory.initElements(new AjaxElementLocatorFactory(driver, WAIT_TIME), this);
+		
+		
+		
 		
 	}
 	

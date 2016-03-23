@@ -14,7 +14,7 @@ import page.factory.helper.BrowserFactory;
 public class Test_GTM_ScheduleMeeting_Page {
 	WebDriver driver;	
 	GTM_ScheduleMeeting_Page scheduleMtngPage;
-	String baseEnv = "stage";
+	String baseEnv = "ed1";
 	String baseProduct = "/meeting/schedulemeeting";
 	String baseUrl = "http://help" + baseEnv +".citrix.com";
 	
